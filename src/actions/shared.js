@@ -10,7 +10,7 @@ export function handleInitialData() {
         Promise.all([ 
             _getQuestions(),
             _getUsers()
-        ]).then(({questions, users}) => {
+        ]).then(([questions, users]) => {
             dispatch(receiveData(questions, users))
             dispatch(dispatch(setAuthedUser(AUTHED_ID)))
         });
