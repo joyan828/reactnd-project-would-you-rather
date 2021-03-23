@@ -1,12 +1,13 @@
 import { AvatarGenerator } from 'random-avatar-generator'
 const generator = new AvatarGenerator()
 
-
 export let users = {
     sarahedo: {
       id: 'sarahedo',
       name: 'Sarah Edo',
-      avatarURL: generator.generateRandomAvatar(),
+      avatarURL: function() {
+        return generator.generateRandomAvatar(this.id)
+      },
       answers: {
         "8xf0y6ziyjabvozdd253nd": 'optionOne',
         "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -18,7 +19,9 @@ export let users = {
     tylermcginnis: {
       id: 'tylermcginnis',
       name: 'Tyler McGinnis',
-      avatarURL: generator.generateRandomAvatar(),
+      avatarURL: function() {
+        return generator.generateRandomAvatar(this.id)
+      },
       answers: {
         "vthrdm985a262al8qx3do": 'optionOne',
         "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -28,7 +31,9 @@ export let users = {
     johndoe: {
       id: 'johndoe',
       name: 'John Doe',
-      avatarURL: generator.generateRandomAvatar(),
+      avatarURL: function() {
+        return generator.generateRandomAvatar(this.id)
+      },
       answers: {
         "xj352vofupe1dqz9emx13r": 'optionOne',
         "vthrdm985a262al8qx3do": 'optionTwo',
@@ -119,5 +124,3 @@ export let questions = {
     },
   }
   
-  
-
