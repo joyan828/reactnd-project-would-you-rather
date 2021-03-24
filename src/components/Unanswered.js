@@ -1,24 +1,24 @@
 import { Component } from 'react'
 import '../styles/App.css'
 import { connect } from 'react-redux'
-import { formatQuestion } from '../utils/formatter'
+import { formatQuestion, formatDate } from '../utils/formatter'
 
 
 class Unanswered extends Component {
   render() {
-        const { 
-            id, optionOne, optionTwo, author 
-        } = this.props.question
-        const avatarURL = author.avatarURL()
+    const { 
+        id, author, timestamp, optionOne, optionTwo
+    } = this.props.question
 
     return (
-      <div className="answer-card unanswered">
+      <div className="answer-card answered">
         <img 
-            src= { avatarURL }
+            src= { author.avatarURL() }
             alt= {`avatar of ${author.name}`}
-            width= {'100px'}
+            className='avatar-img'
         />
-        <span>{author.name} asks...</span>
+        <p>{author.name} asks...</p>
+        <span>{formatDate(timestamp)}</span>
         <p>Would you rather...</p>
         <input 
             type='radio'
@@ -41,15 +41,14 @@ class Unanswered extends Component {
 
 function mapStateToProps ({ questions, users, authedUser }, { id }) {
     const question = questions[id]
-    const { optionOne, optionTwo } = question
     return {
         question : question
-        ? formatQuestion({
-            optionOneText : optionOne.text, 
-            optionTwoText: optionTwo.text, 
-            author : users[authedUser]
-        })
-        : null
+            ? formatQuestion({
+                question, 
+                author : users[question.author]
+            })
+        : null, 
+        authedUser,
     }
 }
 

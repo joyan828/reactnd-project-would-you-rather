@@ -1,12 +1,29 @@
-import { Component } from 'react';
+import { Component } from 'react'
 import '../styles/App.css'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
+import Unanswered from './Unanswered'
+import Answered from './Answered'
 
 class Dashboard extends Component {
   render() {
+    const { answeredId, unansweredId } = this.props
     return (
       <div className="dashboard">
         Dashboard
+        <ul>
+          { answeredId.map((id) => (
+            <Answered 
+              key= {id}
+              id= {id} 
+            />
+          ))}
+          { unansweredId.map((id) => (
+            <Unanswered 
+              key= {id}
+              id= {id} 
+            />
+          ))}
+        </ul>
       </div>
     );
   }
