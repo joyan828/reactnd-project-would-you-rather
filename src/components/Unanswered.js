@@ -2,41 +2,64 @@ import { Component } from 'react'
 import '../styles/App.css'
 import { connect } from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/formatter'
-
+import { handleSaveAnswer } from '../actions/shared'
 
 class Unanswered extends Component {
-  render() {
-    const { 
-        id, author, timestamp, optionOne, optionTwo
-    } = this.props.question
+    state = {
+        answerSelected: null
+    }
+    handleChange = (e) => {
+        const {value} = e.target
+        this.setState({answerSelected : value})
+    }
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const { dispatch, id, authedUser } = this.props
+        const { answerSelected } = this.state
 
-    return (
-      <div className="answer-card answered">
-        <img 
-            src= { author.avatarURL() }
-            alt= {`avatar of ${author.name}`}
-            className='avatar-img'
-        />
-        <p>{author.name} asks...</p>
-        <span>{formatDate(timestamp)}</span>
-        <p>Would you rather...</p>
-        <input 
-            type='radio'
-            name={id}
-            value={optionOne.text}
-            defaultChecked
-        />
-        <label htmlFor={optionOne.text}>{optionOne.text}</label>
-        <input 
-            type='radio'
-            name={id}
-            value={optionTwo.text}
-        />
-        <label htmlFor={optionTwo.text}>{optionTwo.text}</label>
-        <button type='submit'>Vote</button>
-      </div>
-    );
-  }
+        if(answerSelected) {
+            dispatch(handleSaveAnswer({
+                qid: id,
+                authedUser,
+                answer: answerSelected
+            }))
+        } else {
+            alert('Select the answer')
+        }
+    }
+    render() {
+        const { 
+            id, author, timestamp, optionOne, optionTwo
+        } = this.props.question
+
+        return (
+        <div className="answer-card answered">
+            <img 
+                src= { author.avatarURL() }
+                alt= {`avatar of ${author.name}`}
+                className='avatar-img'
+            />
+            <p>{author.name} asks...</p>
+            <span>{formatDate(timestamp)}</span>
+            <p>Would you rather...</p>
+            <input 
+                type='radio'
+                name={id}
+                value='optionOne'
+                onChange={this.handleChange}
+            />
+            <label htmlFor='optionOne'>{optionOne.text}</label>
+            <input 
+                type='radio'
+                name={id}
+                value='optionTwo'
+                onChange={this.handleChange}
+            />
+            <label htmlFor='optionTwo'>{optionTwo.text}</label>
+            <button type='submit' onClick={this.handleSubmit}>Vote</button>
+        </div>
+        );
+    }
 }
 
 function mapStateToProps ({ questions, users, authedUser }, { id }) {

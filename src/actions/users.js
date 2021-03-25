@@ -1,8 +1,8 @@
-// export const GET_USERS = 'GET_USERS'
+export const SAVE_ANSWER_TO_USER = 'SAVE_ANSWER_TO_USER'
 
-// export function getUsers (users) {
-//     return {
-//         type: GET_USERS,
-//         users,
-//     }
-// }
+export function saveAnswerToUser (users) {
+    return {
+        type: SAVE_ANSWER_TO_USER,
+        users
+    }
+}
