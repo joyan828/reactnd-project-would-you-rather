@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import '../styles/App.css'
 import { connect } from 'react-redux'
 import { formatQuestion, formatDate } from '../utils/formatter'

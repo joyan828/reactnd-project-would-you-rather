@@ -1,13 +1,57 @@
+@font-face {
+  font-family: "Chango-Regualr";
+  font-style: normal;
+  src: url("styles/fonts/Chango-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  src: url("styles/fonts/Mulish-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Mulish-Italic";
+  font-style: italic;
+  src: url("styles/fonts/Mulish-Italic-VariableFont_wght.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Lobster";
+  font-style: normal;
+  src: url("styles/fonts/Lobster-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalam-Light";
+  font-style: normal;
+  font-weight: 100;
+  src: url("styles/fonts/Kalam-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalam-Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("styles/fonts/Kalam-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Kalam-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("styles/fonts/Kalam-Regular.ttf") format("truetype");
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Mulish", "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

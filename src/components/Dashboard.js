@@ -3,27 +3,46 @@ import '../styles/App.css'
 import { connect } from 'react-redux'
 import Unanswered from './Unanswered'
 import Answered from './Answered'
+import { TabMenu, TabPanel } from './utils/Tap'
 
 class Dashboard extends Component {
+  state = {
+    tapIndex: 1
+  }
+
+  setTabIndex = (index) => {
+    this.setState(()=> ({
+      tapIndex: index
+    }))
+  }
+  
   render() {
     const { answeredId, unansweredId } = this.props
+    const { tapIndex } = this.state
+
     return (
-      <div className="dashboard">
-        Dashboard
-        <ul>
-          { answeredId.map((id) => (
-            <Answered 
-              key= {id}
-              id= {id} 
-            />
-          ))}
-          { unansweredId.map((id) => (
-            <Unanswered 
-              key= {id}
-              id= {id} 
-            />
-          ))}
-        </ul>
+      <div className='dashboard'>
+        <TabMenu 
+          labels={['Answered Questions', 'Unanswered Questions']}
+          value={tapIndex} 
+          onhandleChange= {this.setTabIndex}
+        />
+        <TabPanel value={tapIndex} index={0}>
+          {answeredId.map((id) => (
+              <Answered 
+                key= {id}
+                id= {id} 
+              />)
+            )} 
+          </TabPanel>
+          <TabPanel value={tapIndex} index={1}>
+            {unansweredId.map((id) => (
+              <Unanswered 
+                key= {id}
+                id= {id} 
+              />
+            ))}
+          </TabPanel>
       </div>
     );
   }
