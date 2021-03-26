@@ -2,6 +2,7 @@ import { getInitialData, saveQuestionAnswer } from '../utils/api'
 import { saveAnswerToQuestion } from './questions'
 import { saveAnswerToUser } from './users'
 import { setAuthedUser } from './authedUser'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 const AUTHED_ID = 'sarahedo'
 
@@ -9,10 +10,13 @@ export const RECEIVE_DATA = 'RECEIVE_DATA'
 
 export function handleInitialData() {
     return (dispatch) => {
+        dispatch(showLoading())
+
         getInitialData()
             .then(({questions, users}) => {
                 dispatch(receiveData(questions, users))
                 dispatch(dispatch(setAuthedUser(AUTHED_ID)))
+                dispatch(hideLoading())
             })
     }
 }
