@@ -2,31 +2,78 @@
   text-align: center;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-.answer-card {
+.container {
+  max-width: 900px;
   margin: 0 auto;
-  max-width: 700px;
-  border: 1px solid #999;
-  padding: 5px;
-  margin-bottom: 15px;
+  padding: 10px;
 }
 
-.answer-card .avatar-img {
-  width: 60px;
-  height: 60px;
+.center {
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.answer-card-small {
+  background-color: #fff;
+  margin: 0 auto;
+  width: 250px;
+  height: 250px;
+  border-radius: 5%;
+  border: 10px solid tomato;
+  padding: 10px;
+  box-sizing: content-box;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.15);
+  position: relative;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.answer-card-small:hover {
+  transform: scale(1.012);
+  /* border: 10px solid deepskyblue; */
+}
+
+.answer-card-small .questioner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.answer-card-small .avatar-img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  padding: 2px;
 }
 
-.answer-card .option {
+.answer-card-small .option {
   border: 1px solid #999;
   padding: 5px;
   margin-bottom: 5px;
 }
 
-.answer-card .selected {
+.answer-card-small .selected {
   border-color: #1995fb;
+}
+
+.answer-card-small .answer {
+  font-size: 1.1rem;
+}
+
+.point {
+  padding: 15px 0;
+  font-family: "Kalam-Bold";
+  font-size: 2rem;
+}
+
+.answer-card-small .secondary {
+  font-size: 0.9rem;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }

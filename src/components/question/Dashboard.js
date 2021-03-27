@@ -1,13 +1,13 @@
 import { Component } from 'react'
-import '../styles/App.css'
+import '../../styles/App.css'
 import { connect } from 'react-redux'
-import Unanswered from './Unanswered'
-import Answered from './Answered'
-import { TabMenu, TabPanel } from './utils/Tap'
+import UnansweredQCard from './UnansweredQuestionSmall'
+import AnsweredQCard from './AnsweredQuestionSmall'
+import { TabMenu, TabPanel } from '../utils/Tap'
 
 class Dashboard extends Component {
   state = {
-    tapIndex: 1
+    tapIndex: 0
   }
 
   setTabIndex = (index) => {
@@ -17,27 +17,27 @@ class Dashboard extends Component {
   }
   
   render() {
-    const { answeredId, unansweredId } = this.props
+    const { answeredQid, unansweredQid } = this.props
     const { tapIndex } = this.state
 
     return (
-      <div className='dashboard'>
+      <div className='container'>
         <TabMenu 
           labels={['Answered Questions', 'Unanswered Questions']}
           value={tapIndex} 
           onhandleChange= {this.setTabIndex}
         />
-        <TabPanel value={tapIndex} index={0}>
-          {answeredId.map((id) => (
-              <Answered 
+        <TabPanel className='grid-container margin-top-20' value={tapIndex} index={0}>
+          {answeredQid.map((id) => (
+              <AnsweredQCard 
                 key= {id}
                 id= {id} 
               />)
             )} 
           </TabPanel>
-          <TabPanel value={tapIndex} index={1}>
-            {unansweredId.map((id) => (
-              <Unanswered 
+          <TabPanel className='grid-container margin-top-20' value={tapIndex} index={1}>
+            {unansweredQid.map((id) => (
+              <UnansweredQCard 
                 key= {id}
                 id= {id} 
               />
@@ -50,14 +50,14 @@ class Dashboard extends Component {
 
 function mapStateToProps ({ questions, users, authedUser }) {
   const questionId = Object.keys(questions)
-  const answeredId = Object.keys(users[authedUser].answers)
+  const answeredQid = Object.keys(users[authedUser].answers)
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
-  const unansweredId = questionId.filter((id => !answeredId.includes(id)))
+  const unansweredQid = questionId.filter((id => !answeredQid.includes(id)))
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
 
   return {
-    answeredId,
-    unansweredId
+    answeredQid,
+    unansweredQid
   }
 }
 

@@ -3,7 +3,7 @@ import '../styles/App.css'
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import LoadingBar from 'react-redux-loading-bar'
-import Dashboard from './Dashboard'
+import Dashboard from './question/Dashboard'
 
 class App extends Component {
   componentDidMount() {

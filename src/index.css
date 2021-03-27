@@ -44,14 +44,43 @@
   src: url("styles/fonts/Kalam-Regular.ttf") format("truetype");
 }
 
+html {
+  font-size: "20px";
+}
+
 body {
   margin: 0;
+  padding: 0;
   font-family: "Mulish", "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #252525;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+a {
+  text-decoration: none;
+  color: #252525;
+}
+
+ul,
+li,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.secondary {
+  color: #666;
 }

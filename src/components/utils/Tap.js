@@ -2,6 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
+import { styled } from '@material-ui/core/styles';
+
+const MyTab = styled(Tab)({
+   width: '205px'
+});
 
 const a11yProps = (index) => {
     return {
@@ -10,7 +15,7 @@ const a11yProps = (index) => {
     };
 }
 
-export function TabMenu (props) {
+export function TabMenu (props, styles) {
     const {labels, value, onhandleChange} = props;
     return (
         <Tabs
@@ -19,7 +24,8 @@ export function TabMenu (props) {
             centered
         >
             {labels.map((item, index) => (
-                <Tab
+                <MyTab
+                    fullWidth={'205px'}
                     key={index} 
                     disableRipple={true}
                     label={item} 
