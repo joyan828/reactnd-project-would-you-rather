@@ -7,7 +7,7 @@ import { TabMenu, TabPanel } from '../utils/Tap'
 
 class Dashboard extends Component {
   state = {
-    tapIndex: 0
+    tapIndex: 1
   }
 
   setTabIndex = (index) => {

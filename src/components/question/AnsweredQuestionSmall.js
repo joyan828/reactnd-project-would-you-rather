@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import '../../styles/App.css'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../../utils/formatter'
  
 function AnsweredQuestionSmall(props) {
-    // Todo: move to question detail page
     const isOptionOneSelected = () => {
         const { optionOne } = props.question
         return optionOne.votes.includes(props.authedUser) 
@@ -16,26 +16,28 @@ function AnsweredQuestionSmall(props) {
 
     return (
       <div className="answer-card-small">
-        <div className='questioner'>
-            <img 
-                src= { author.avatarURL() }
-                alt= {`avatar of ${author.name}`}
-                className='avatar-img'
-            />
-            <p>
-                Asked by&nbsp;
-                <span className='strong'>{author.name}</span> 
-            </p>
-        </div>
-        <div className='point'>
-            Would you <br />rather
-        </div>
-        <div className='text-feild'>
-            <p className='answer'>
-                {isOptionOneSelected()? optionOne.text : optionTwo.text} 
-            </p>
-        </div>
-        <p className='secondary'>{totalVote} Voted</p>
+        <Link to={`/question/${id}`}>
+            <div className='questioner'>
+                <img 
+                    src= { author.avatarURL() }
+                    alt= {`avatar of ${author.name}`}
+                    className='avatar-img'
+                />
+                <p>
+                    Asked by&nbsp;
+                    <span className='strong'>{author.name}</span> 
+                </p>
+            </div>
+            <div className='point'>
+                Would you <br />rather
+            </div>
+            <div className='text-feild'>
+                <p className='answer'>
+                    {isOptionOneSelected()? optionOne.text : optionTwo.text} 
+                </p>
+            </div>
+            <p className='secondary'>{totalVote} Voted</p>
+        </Link>
       </div>
     );
 }
