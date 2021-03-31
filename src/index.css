@@ -57,6 +57,9 @@
   --medium-gray: #939799;
   --dim-gray: #666b6c;
   --max-width: 900px;
+  /* --point-font-bold: "Kalam-Bold"; */
+  --point-font-bold: "Lobster";
+  --point-font-regular: "Kalam-Regular";
 }
 
 html * {

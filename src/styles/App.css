@@ -26,6 +26,21 @@ button {
   text-align: center;
 }
 
+.container {
+  max-width: var(--max-width);
+  margin: 30px auto 0;
+}
+
+.box {
+  border-radius: 7px;
+  padding: 30px 70px;
+  background-color: var(--white);
+}
+
+.shadow {
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.08);
+}
+
 .strong {
   font-weight: 700;
 }
@@ -36,12 +51,6 @@ button {
 
 .secondary {
   color: #666;
-}
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 10px;
 }
 
 .center {
