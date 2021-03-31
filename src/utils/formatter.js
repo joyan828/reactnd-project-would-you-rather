@@ -8,12 +8,28 @@ export function formatDate (timestamp) {
     return d.toLocaleDateString() + ' ' + time.substr(0, 5) + time.slice(-2)
 }
 
+export function generateQuestion ({author, optionOneText, optionTwoText}) {
+    return {
+        author, 
+        id: generateUID(),
+        timestamp: Date.now(),
+        optionOne: {
+            votes: [], 
+            text: optionOneText
+        },
+        optionTwo: {
+            votes: [], 
+            text: optionTwoText
+        },
+    }
+}
+
 export function formatQuestion ({ question, author }) {
     const { id, timestamp, optionOne, optionTwo} = question
     return {
         author,
         id,
-        timestamp, 
+        timestamp: formatDate(timestamp), 
         optionOne,
         optionTwo,
     }

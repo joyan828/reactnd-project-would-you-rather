@@ -1,5 +1,5 @@
 import { AvatarGenerator } from 'random-avatar-generator'
-import { formatQuestion } from './formatter'
+import { generateQuestion } from './formatter'
 
 const generator = new AvatarGenerator()
 
@@ -137,26 +137,26 @@ export function _getQuestions () {
       setTimeout(() => res({...questions}), 1000)
   })
 }
-export function _saveQuestion (question) {
+export function _saveQuestion ({author, optionOneText, optionTwoText}) {
   return new Promise((res, rej) => {
-      const authedUser = question.author;
-      const formattedQuestion = formatQuestion(question);
+      const authedUser = author;
+      const generatedQuestion = generateQuestion({author, optionOneText, optionTwoText});
 
       setTimeout(() => {
-      questions = {
-          ...questions,
-          [formattedQuestion.id]: formattedQuestion
-      }
-      
-      users = {
-          ...users,
-          [authedUser]: {
-          ...users[authedUser],
-          questions: users[authedUser].questions.concat([formattedQuestion.id])
-          }
-      }
+        questions = {
+            ...questions,
+            [generatedQuestion.id]: generatedQuestion
+        }
+        
+        users = {
+            ...users,
+            [authedUser]: {
+            ...users[authedUser],
+            questions: users[authedUser].questions.concat([generatedQuestion.id])
+            }
+        }
 
-      res(formattedQuestion)
+      res(generatedQuestion)
       }, 1000)
   })
 }
