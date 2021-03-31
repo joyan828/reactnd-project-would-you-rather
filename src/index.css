@@ -1,3 +1,5 @@
+@import "./styles/index.css";
+
 @font-face {
   font-family: "Chango-Regualr";
   font-style: normal;
@@ -44,7 +46,20 @@
   src: url("styles/fonts/Kalam-Regular.ttf") format("truetype");
 }
 
-html {
+:root {
+  --background: #f9f9f9;
+  --text: #252525;
+  --primary: rgb(0, 192, 150);
+  --secondary: #ffffff;
+  --white: #ffffff;
+  --lightest-gray: #d3d3d3;
+  --light-gray: #c0c0c0;
+  --medium-gray: #939799;
+  --dim-gray: #666b6c;
+  --max-width: 900px;
+}
+
+html * {
   font-size: "20px";
 }
 
@@ -54,33 +69,6 @@ body {
   font-family: "Mulish", "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #252525;
-}
-
-a {
-  text-decoration: none;
-  color: #252525;
-}
-
-ul,
-li,
-p {
-  margin: 0;
-  padding: 0;
-}
-
-li {
-  list-style: none;
-}
-
-.strong {
-  font-weight: 700;
-}
-
-.margin-top-20 {
-  margin-top: 20px;
-}
-
-.secondary {
-  color: #666;
+  color: var(--text);
+  background: var(--background);
 }
