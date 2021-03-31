@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import '../styles/App.css'
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import Nav from './header/Nav'
@@ -17,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-          <LoadingBar />
+          <LoadingBar className='loading-bar'/>
           <main className="App">
             <Nav />
             { 

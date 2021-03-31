@@ -1,3 +1,4 @@
+/* Small dot loader */
 .spinner-box {
   display: inline-block;
 }
@@ -36,4 +37,10 @@
     opacity: 0.25;
     transform: scale(0.85);
   }
+}
+
+/* react-redux-loading-bar */
+.loading-bar {
+  background-color: var(--primary);
+  height: 5px;
 }
