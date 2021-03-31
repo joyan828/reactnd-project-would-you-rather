@@ -1,60 +1,69 @@
 import React from 'react'
-import '../../styles/App.css'
-import '../../styles/header.css'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { LoaderSmallDots } from '../utils/Loader'
 
 function Nav(props){
-     // Todo : move to my page 
+    const { isLoading } = props
 
-    // const { id, avatarURL, name } = props
-   
     return (
-        <nav className='nav'>
-            <ul>
-                <li>
-                    <NavLink to='/' exact activeClassName='active'> 
-                        Home
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/new' exact activeClassName='active'> 
-                        New Question
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/leader' exact activeClassName='active'> 
-                        Leader Board
-                    </NavLink>
-                </li>
-                <li>
-                    {/* { name &&
-                    <NavLink to='/mypage' exact activeClassName='active'> 
-                       <span> Hello, {name}
-                       <img 
-                            src= { avatarURL() }
-                            alt= {`avatar of ${name}`}
-                            className='avatar-img'
-                        />
-                       </span>
-                    </NavLink>
-                    } */}
-                </li>
-            </ul>
-        </nav>
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                    
+                        <NavLink to='/' exact activeClassName='active'> 
+                            Home
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/add' exact activeClassName='active'> 
+                            New Question
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/leader' exact activeClassName='active'> 
+                            Leader Board
+                        </NavLink>
+                    </li>
+                    <li className='userName'>
+                        { isLoading 
+                        ? <LoaderSmallDots />
+                        : <span> Hello, {props.name}
+                                <img 
+                                    src= { props.avatarURL(props.id) }
+                                    alt= {`avatar of ${props.name}`}
+                                    className='avatar-img'
+                                />
+                            </span>
+                        }
+                        <NavLink to='/logout' exact> 
+                            Logout
+                        </NavLink>
+                    </li>
+                </ul>
+            </nav>
+        </header>
     )
 }
 
 function mapStateToProps({ authedUser, users }) {
-    // if( authedUser !== null ) {
-    //     const user = users[authedUser]
-    //     const { id, avatarURL, name } = user
-    //     return {
-    //         id, 
-    //         avatarURL, 
-    //         name 
-    //     }
-    // }
+    const isLoading = authedUser === null
+
+    if(isLoading) {
+        return { 
+            isLoading
+        }
+    } else {
+        const user = users[authedUser]
+        const { id, avatarURL, name } = user
+        return {
+            isLoading,
+            id, 
+            avatarURL, 
+            name 
+        }
+    }
 }
 
 export default connect(mapStateToProps)(Nav)
