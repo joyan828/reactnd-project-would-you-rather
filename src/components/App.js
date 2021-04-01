@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { handleInitialData } from '../actions/shared';
 import Nav from './header/Nav'
 import LoadingBar from 'react-redux-loading-bar'
-import Dashboard from './question/Dashboard'
-import QuestionPage from './question/QuestionPage'
-import NewQuestion from './question/NewQuestion'
+import Dashboard from './Dashboard'
+import QuestionPage from './QuestionPage'
+import NewQuestion from './NewQuestion'
 
 class App extends Component {
   componentDidMount() {

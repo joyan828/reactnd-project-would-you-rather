@@ -5,7 +5,11 @@ import Tab from '@material-ui/core/Tab'
 import { styled } from '@material-ui/core/styles';
 
 const MyTab = styled(Tab)({
-   width: '205px'
+   width: '210px',
+   backgroundColor: '#3f51b5',
+   borderTopLeftRadius: '10px',
+   borderTopRightRadius: '10px',
+   color: '#fff'
 });
 
 const a11yProps = (index) => {
@@ -15,11 +19,12 @@ const a11yProps = (index) => {
     };
 }
 
-export function TabMenu (props, styles) {
+export function TabMenu (props) {
     const {labels, value, onhandleChange} = props;
     return (
         <Tabs
             value={value}
+            indicatorColor="primary"
             onChange={(e, index) => onhandleChange(index)}
             centered
         >
@@ -41,7 +46,7 @@ export function TabPanel(props) {
     const { children, value, index, ...other } = props;
   
     return (
-      <div
+      <article
         role="tabpanel"
         hidden={value !== index}
         id={`simple-tabpanel-${index}`}
@@ -51,7 +56,7 @@ export function TabPanel(props) {
         {value === index && (
           children
         )}
-      </div>
+      </article>
     );
 }
   

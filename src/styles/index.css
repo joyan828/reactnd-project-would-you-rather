@@ -1,5 +1,7 @@
 @import "./App.css";
 @import "./header.css";
 @import "./utils/loader.css";
-@import "./question.css";
-@import "./NewQuestion.css";
+@import "./utils/badge.css";
+@import "./smallQuestionCard.css";
+@import "./questionCard.css";
+@import "./newQuestion.css";

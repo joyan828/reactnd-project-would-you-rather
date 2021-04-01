@@ -1,0 +1,16 @@
+.my-question-mark {
+  width: 0px;
+  height: 0px;
+  color: var(--white);
+  border-bottom: 50px solid transparent;
+  border-right: 50px solid var(--secondary);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.my-question-mark span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-left: 20px;
+}
