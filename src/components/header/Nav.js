@@ -22,7 +22,7 @@ function Nav(props){
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/leader' exact activeClassName='active'> 
+                        <NavLink to='/leaderboard' exact activeClassName='active'> 
                             Leader Board
                         </NavLink>
                     </li>

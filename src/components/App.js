@@ -7,6 +7,7 @@ import LoadingBar from 'react-redux-loading-bar'
 import Dashboard from './Dashboard'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
+import Leaderboard from './Leaderboard'
 
 class App extends Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ class App extends Component {
                 <Route path='/' exact component={Dashboard}/>
                 <Route path='/question/:id' component={QuestionPage}/>
                 <Route path='/add' component={NewQuestion} />
+                <Route path='/leaderboard' component={Leaderboard} />
               </div>  
             }
           </main>

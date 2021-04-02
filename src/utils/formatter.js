@@ -34,4 +34,23 @@ export function formatQuestion ({ question, author }) {
         optionTwo,
     }
 }
+
+export function formatUser ({ user }) {
+    const { id, name, avatarURL, questions, answers} = user
+    const answer = Object.keys(answers).length
+    const question = questions.length
+
+    return {
+        id, 
+        name, 
+        avatarURL, 
+        answers, 
+        questions,
+        scores : {
+            answer,
+            question,
+            total: answer + question 
+        }
+    }
+}
   
