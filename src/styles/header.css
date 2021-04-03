@@ -30,8 +30,13 @@ nav .userName img {
   top: 5px;
 }
 
-nav .userName a {
+nav .userName .logout {
   cursor: pointer;
   padding: 0 10px;
   color: var(--dim-gray);
+}
+
+nav .userName .login {
+  cursor: pointer;
+  color: var(--primary);
 }

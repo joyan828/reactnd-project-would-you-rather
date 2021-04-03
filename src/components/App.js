@@ -10,6 +10,7 @@ import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
+import PrivateRoute from './PrivateRouter'
 
 class App extends Component {
   componentDidMount() {
@@ -22,28 +23,18 @@ class App extends Component {
           <LoadingBar className='loading-bar'/>
           <main className="App">
             <Nav />
-            { 
-              this.props.loading === true
-              ? null
-              : <div>
-                <Route path='/' exact component={Dashboard}/>
-                <Route path='/question/:id' component={QuestionPage}/>
-                <Route path='/add' component={NewQuestion} />
-                <Route path='/leaderboard' component={Leaderboard} />
+             <div>
+                <PrivateRoute path='/' exact component={Dashboard}/>
+                <PrivateRoute path='/question/:id' component={QuestionPage}/>
+                <PrivateRoute path='/add' component={NewQuestion} />
+                <PrivateRoute path='/leaderboard' component={Leaderboard} />
                 <Route path='/signin' component={SignIn} />
                 <Route path='/signup' component={SignUp} />
               </div>  
-            }
           </main>
       </Router>
     );
   }
 }
 
-function mapStateToProps ({ authedUser, questions }) {
-  return {
-    loading : authedUser === null
-  }
-}
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

@@ -1,17 +1,19 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { LoaderSmallDots } from '../utils/Loader'
+import { removeAuthedUser } from '../../actions/authedUser'
 
 function Nav(props){
-    const { isLoading } = props
+    const { isAuthed, dispatch } = props
+    const handleLogout = (id) => {
+        dispatch(removeAuthedUser(id))
+    }
 
     return (
         <header>
             <nav>
                 <ul>
                     <li>
-                    
                         <NavLink to='/' exact activeClassName='active'> 
                             Home
                         </NavLink>
@@ -27,19 +29,27 @@ function Nav(props){
                         </NavLink>
                     </li>
                     <li className='userName'>
-                        { isLoading 
-                        ? <LoaderSmallDots />
-                        : <span> Hello, {props.name}
-                                <img 
-                                    src= { props.avatarURL(props.id) }
-                                    alt= {`avatar of ${props.name}`}
-                                    className='avatar-img'
-                                />
-                            </span>
+                        { isAuthed 
+                        ? <>
+                                <span> Hello, {props.name}
+                                    <img 
+                                        src= { props.avatarURL }
+                                        alt= {`avatar of ${props.name}`}
+                                        className='avatar-img'
+                                    />
+                                </span>
+                                <span 
+                                    className='logout'
+                                    onClick={handleLogout}
+                                > 
+                                    Logout
+                                </span>
+                            </>
+                        : <Link to='/signin'>
+                            <span className='login'>Sign In</span>
+                        </Link>
                         }
-                        <NavLink to='/logout' exact> 
-                            Logout
-                        </NavLink>
+                        
                     </li>
                 </ul>
             </nav>
@@ -48,20 +58,19 @@ function Nav(props){
 }
 
 function mapStateToProps({ authedUser, users }) {
-    const isLoading = authedUser === null
-
-    if(isLoading) {
-        return { 
-            isLoading
-        }
-    } else {
+    const isAuthed = authedUser !== null 
+    if(isAuthed) {
         const user = users[authedUser]
         const { id, avatarURL, name } = user
         return {
-            isLoading,
+            isAuthed,
             id, 
             avatarURL, 
             name 
+        }
+    } else {
+        return { 
+            isAuthed
         }
     }
 }
