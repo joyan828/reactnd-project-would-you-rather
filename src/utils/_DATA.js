@@ -203,14 +203,20 @@ export function _saveUser ({id, password, name}) {
 export function _logInUser ({id, password}) {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      const authedUser = users.filter((user) => user.id === id && user.password === password )
+      let authedUser = null
+      for (let key in users) {
+        const user = users[key]
+        if(user.id === id && user.password === password) {
+          authedUser = id
+        }
+      }
 
       res(authedUser)
     }, 500)
   })
 }
 
-export function _logOutUser ({id}) {
+export function _logOutUser (id) {
   return new Promise((res, rej) => {
     setTimeout(() => {
       res(id)
