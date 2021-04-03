@@ -17,7 +17,7 @@ export const passwordValidation = (password) => {
 }
 
 export const nameValidation = (name) => {
-    let reg = /^[a-z,가-힣\s]{2,10}$/g;
+    let reg = /^[a-z,A-Z,가-힣\s]{2,10}$/g;
     if( !reg.test(name) ) {
         return false
     } else {
