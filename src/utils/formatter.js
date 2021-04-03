@@ -1,3 +1,5 @@
+import { avatarURL } from "./avatarGenerator"
+
 function generateUID () {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
@@ -21,6 +23,17 @@ export function generateQuestion ({author, optionOneText, optionTwoText}) {
             votes: [], 
             text: optionTwoText
         },
+    }
+}
+
+export function generateUser ({ id, name, password }) {
+    return {
+        id, 
+        name,
+        password,
+        avatarURL: avatarURL(id),
+        answers: {},
+        questions: []
     }
 }
 

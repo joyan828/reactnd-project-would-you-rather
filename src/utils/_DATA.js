@@ -1,15 +1,12 @@
-import { AvatarGenerator } from 'random-avatar-generator'
 import { generateQuestion } from './formatter'
-
-const generator = new AvatarGenerator()
+import { generateUser } from './formatter'
 
 export let users = {
     sarahedo: {
       id: 'sarahedo',
+      password: 'sarahedo123',
       name: 'Sarah Edo',
-      avatarURL: function(id) {
-        return generator.generateRandomAvatar(id)
-      },
+      avatarURL: "https://avataaars.io/?accessoriesType=Round&avatarStyle=Circle&clotheColor=Heather&clotheType=GraphicShirt&eyeType=Cry&eyebrowType=RaisedExcitedNatural&facialHairColor=Brown&facialHairType=BeardMagestic&hairColor=Platinum&hatColor=PastelOrange&mouthType=Sad&skinColor=Light&topType=ShortHairShortFlat",
       answers: {
         "8xf0y6ziyjabvozdd253nd": 'optionOne',
         "6ni6ok3ym7mf1p33lnez": 'optionTwo',
@@ -20,10 +17,9 @@ export let users = {
     },
     tylermcginnis: {
       id: 'tylermcginnis',
+      password: 'tyler123',
       name: 'Tyler McGinnis',
-      avatarURL: function() {
-        return generator.generateRandomAvatar(this.id)
-      },
+      avatarURL: "https://avataaars.io/?accessoriesType=Prescription01&avatarStyle=Circle&clotheColor=Pink&clotheType=CollarSweater&eyeType=Side&eyebrowType=DefaultNatural&facialHairColor=BrownDark&facialHairType=BeardLight&hairColor=BrownDark&hatColor=Black&mouthType=Concerned&skinColor=Pale&topType=LongHairBob",
       answers: {
         "vthrdm985a262al8qx3do": 'optionOne',
         "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -32,10 +28,9 @@ export let users = {
     },
     johndoe: {
       id: 'johndoe',
+      password: 'johndoe123',
       name: 'John Doe',
-      avatarURL: function() {
-        return generator.generateRandomAvatar(this.id)
-      },
+      avatarURL: "https://avataaars.io/?accessoriesType=Round&avatarStyle=Circle&clotheColor=Black&clotheType=BlazerShirt&eyeType=Dizzy&eyebrowType=DefaultNatural&facialHairColor=Brown&facialHairType=BeardLight&hairColor=BrownDark&hatColor=Red&mouthType=Disbelief&skinColor=Black&topType=LongHairStraight2",
       answers: {
         "xj352vofupe1dqz9emx13r": 'optionOne',
         "vthrdm985a262al8qx3do": 'optionTwo',
@@ -190,3 +185,35 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
   })
 }
 
+export function _saveUser ({id, password, name}) {
+  return new Promise((res, rej) => {
+    const user = generateUser({id, password, name})
+    setTimeout(() => {
+      users = {
+        ...users,
+        [id]: {
+          ...user
+        }
+      }
+      res({user})
+    }, 500)
+  })
+}
+
+export function _logInUser ({id, password}) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      const authedUser = users.filter((user) => user.id === id && user.password === password )
+
+      res(authedUser)
+    }, 500)
+  })
+}
+
+export function _logOutUser ({id}) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(id)
+    }, 500)
+  })
+}
