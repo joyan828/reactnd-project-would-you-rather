@@ -1,0 +1,16 @@
+.notfound h2 {
+  margin: 0;
+  font-size: 300px;
+  color: var(--dim-gray);
+}
+
+.notfound p {
+  color: var(--dim-gray);
+}
+
+.notfound a {
+  color: var(--white);
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
