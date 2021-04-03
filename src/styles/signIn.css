@@ -1,0 +1,8 @@
+.link-signup {
+  color: var(--dim-gray);
+}
+
+.link-signup a {
+  color: var(--primary);
+  font-weight: 700;
+}

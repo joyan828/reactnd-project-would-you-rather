@@ -8,6 +8,8 @@ import Dashboard from './Dashboard'
 import QuestionPage from './QuestionPage'
 import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
+import SignIn from './SignIn'
+import SignUp from './SignUp'
 
 class App extends Component {
   componentDidMount() {
@@ -28,6 +30,8 @@ class App extends Component {
                 <Route path='/question/:id' component={QuestionPage}/>
                 <Route path='/add' component={NewQuestion} />
                 <Route path='/leaderboard' component={Leaderboard} />
+                <Route path='/signin' component={SignIn} />
+                <Route path='/signup' component={SignUp} />
               </div>  
             }
           </main>
@@ -36,7 +40,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, questions }) {
   return {
     loading : authedUser === null
   }
