@@ -20,6 +20,12 @@ export function handleAddUser({id, name, password}) {
             .then(({ user }) => {
                 dispatch(addUser(user))
                 dispatch(hideLoading())
+                
+                return true
+            })
+            .catch((e)=> {
+                console.warn(`Error in handleAddUser `, e)
+                alert('There was an error adding the user. Try again.')
             })
     }
 }
