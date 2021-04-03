@@ -5,12 +5,13 @@ import Winner from '../images/medal.png'
 
 class Leader extends Component {
     render() {
-        const { rank, user, authedUser } = this.props
+        const { maxScore, user, authedUser } = this.props
         const { id, name, avatarURL, scores } = user
+        
         return (
             <li className={ id === authedUser ? 'leader selected' : 'leader' }>
                 <div className='user-image'>
-                    { rank === 1 && 
+                    { maxScore === scores.total && 
                         <span className='winner-mark'> 
                             <img 
                                 src={Winner} 
@@ -19,7 +20,7 @@ class Leader extends Component {
                         </span>
                     }
                     <img    
-                        src= {avatarURL(id)}
+                        src= {avatarURL}
                         alt= {`avatar of ${name}`}
                     />
                 </div>
@@ -50,12 +51,12 @@ class Leader extends Component {
     }
 }
 
-function mapStateToProps ({ users, authedUser }, {id}) {
+function mapStateToProps ({ users, authedUser }, {id, maxScore}) {
     const user = users[id]
-
     return {
         user : formatUser({user}),
-        authedUser
+        authedUser,
+        maxScore
     }
 }
 
