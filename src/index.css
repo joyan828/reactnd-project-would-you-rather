@@ -1,22 +1,9 @@
 @import "./styles/index.css";
 
 @font-face {
-  font-family: "Chango-Regualr";
-  font-style: normal;
-  src: url("styles/fonts/Chango-Regular.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "Mulish";
   font-style: normal;
   src: url("styles/fonts/Mulish-VariableFont_wght.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Mulish-Italic";
-  font-style: italic;
-  src: url("styles/fonts/Mulish-Italic-VariableFont_wght.ttf")
-    format("truetype");
 }
 
 @font-face {
@@ -25,41 +12,18 @@
   src: url("styles/fonts/Lobster-Regular.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: "Kalam-Light";
-  font-style: normal;
-  font-weight: 100;
-  src: url("styles/fonts/Kalam-Light.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Kalam-Bold";
-  font-style: normal;
-  font-weight: 700;
-  src: url("styles/fonts/Kalam-Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Kalam-Regular";
-  font-style: normal;
-  font-weight: 400;
-  src: url("styles/fonts/Kalam-Regular.ttf") format("truetype");
-}
-
 :root {
   --background: #f9f9f9;
   --text: #252525;
   --primary: rgb(0, 192, 150);
-  --secondary: #ffffff;
+  --secondary: #3f51b5;
   --white: #ffffff;
   --lightest-gray: #d3d3d3;
   --light-gray: #c0c0c0;
   --medium-gray: #939799;
   --dim-gray: #666b6c;
   --max-width: 900px;
-  /* --point-font-bold: "Kalam-Bold"; */
   --point-font-bold: "Lobster";
-  --point-font-regular: "Kalam-Regular";
 }
 
 html * {
@@ -70,6 +34,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Mulish", "Roboto", sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--text);
