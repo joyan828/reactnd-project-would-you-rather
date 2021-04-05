@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import '../../styles/App.css'
-import '../../styles/question.css'
 import { formatDate } from '../../utils/formatter'
 import { handleSaveAnswer } from '../../actions/shared'
 
-export default class UnansweredQuestion extends Component {
+export default class Unanswered extends Component {
     state = {
         answerSelected: null,
         toHome: false
@@ -40,11 +38,11 @@ export default class UnansweredQuestion extends Component {
         }
 
         return (
-        <div className='answer-card'>
-            <div className='card-info-container'>
+        <div className='answer-card container'>
+            <div className='card-header-container'>
                 <div className='questioner'>
                     <img 
-                        src= { author.avatarURL() }
+                        src= { author.avatarURL }
                         alt= {`avatar of ${author.name}`}
                         className='avatar-img'
                     />
@@ -53,11 +51,12 @@ export default class UnansweredQuestion extends Component {
                         &nbsp;asks
                     </p>
                 </div>
+                <div className='point'>
+                    Would you rather
+                </div> 
                 <div className='date-created'>{formatDate(timestamp)}</div>
             </div>
-            <div className='point'>
-                Would you rather
-            </div> 
+            
             <form className='answer-form' onSubmit={this.handleSubmit}>
                 <button className='answer-button' type='submit' value='optionOne' onClick={this.handleClick}>
                     {optionOne.text}

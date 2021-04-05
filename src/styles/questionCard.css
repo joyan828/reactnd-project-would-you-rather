@@ -1,0 +1,180 @@
+.answer-card {
+  background-color: var(--white);
+  margin: 0 auto;
+  max-width: 100%;
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.15);
+}
+
+.answer-card .card-header-container {
+  display: flex;
+  align-items: center;
+}
+
+.card-header-container .questioner {
+  width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.card-header-container .date-created {
+  text-align: right;
+  height: 70px;
+  line-height: 70px;
+  width: 33%;
+  font-size: 1rem;
+}
+
+.card-header-container .point {
+  width: 33%;
+  font-size: 2rem;
+}
+
+.answer-card .answer-form {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin: 20px auto;
+}
+
+.answer-form .middle-circle {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: var(--white);
+  margin-left: -35px;
+  margin-top: -35px;
+  font-size: 1.3rem;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 70px;
+}
+
+.answer-form .answer-button {
+  position: absolute;
+  top: 0;
+  width: 49.5%;
+  padding: 40px;
+  height: 100%;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.3rem;
+  opacity: 0.75;
+  transition: all 0.15s ease-in-out;
+}
+
+.answer-form .answer-button:first-child {
+  left: 0;
+  background-color: var(--primary);
+}
+
+.answer-form .answer-button:last-child {
+  right: 0;
+  background-color: var(--secondary);
+}
+
+.answer-form .answer-button:hover {
+  opacity: 0.9;
+}
+
+/* answered - poll result */
+.answer-card .options {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  margin: 20px auto;
+}
+
+.answer-card .options .option {
+  position: absolute;
+  top: 0;
+  width: 49.5%;
+  padding: 40px;
+  height: 100%;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.3rem;
+  background-color: var(--lightest-gray);
+}
+
+.answer-card .options .option:first-child {
+  left: 0;
+}
+
+.answer-card .options .option:last-child {
+  right: 0;
+}
+
+.answer-card .option .option-text {
+  font-size: 1.1rem;
+}
+
+.answer-card .option .graph-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  background-color: var(--primary);
+  animation: 0.8s ease-in-out slidein;
+}
+
+.answer-card .option:first-child .graph-bar {
+  background-color: var(--primary);
+}
+
+.answer-card .option:last-child .graph-bar {
+  background-color: var(--secondary);
+}
+
+.answer-card .option .poll-info {
+  position: relative;
+}
+
+.answer-card .option .percentage {
+  padding: 10px 0 10px;
+  font-size: 2.5rem;
+  animation: 2.5s showup;
+}
+
+.answer-card .option .number-of-votes {
+  font-size: 0.9rem;
+}
+
+.answer-card .option .check-mark {
+  width: 20px;
+  height: 20px;
+  display: none;
+}
+
+.answer-card .selected .check-mark {
+  display: inline;
+}
+
+.answer-card .option .option-text {
+  font-weight: 700;
+}
+
+@keyframes slidein {
+  from {
+    height: 0;
+  }
+}
+
+@keyframes showup {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}

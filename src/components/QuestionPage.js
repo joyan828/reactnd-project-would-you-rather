@@ -1,24 +1,26 @@
 import React from 'react'
-import '../../styles/App.css'
-import '../../styles/question.css'
 import { connect } from 'react-redux'
-import { formatQuestion } from '../../utils/formatter'
-import AnsweredQuestion from './AnsweredQuestion'
-import UnansweredQuestion from './UnansweredQuestion'
+import { Redirect } from 'react-router-dom'
+import { formatQuestion } from '../utils/formatter'
+import Answered from './questionCards/Answered'
+import Unanswered from './questionCards/Unanswered'
 
 function QuestionPage (props) {
     const { question, authedUser, isAnswered, dispatch } = props
-
+    
+    if (question === null) {
+        return <Redirect to='/notfound'></Redirect>
+    }
     return (
         <div className='container'>
             {
                 isAnswered 
-                    ? <AnsweredQuestion 
+                    ? <Answered 
                         dispatch= {dispatch}
                         question= {question} 
                         authedUser= {authedUser}
                     />
-                    : <UnansweredQuestion 
+                    : <Unanswered 
                         dispatch= {dispatch}
                         question= {question} 
                         authedUser= {authedUser}
