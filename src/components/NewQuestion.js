@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { handleAddQuestion } from '../../actions/shared'
+import { handleAddQuestion } from '../actions/shared'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { styled } from '@material-ui/core/styles';
