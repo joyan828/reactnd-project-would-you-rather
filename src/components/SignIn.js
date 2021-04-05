@@ -9,7 +9,7 @@ import { handleLoginUser } from '../actions/authedUser'
 
 class SignIn extends Component {
     state = {
-        id: '',
+        id: '', 
         password: ''
     }
     handleChange = (e) => {
@@ -22,7 +22,8 @@ class SignIn extends Component {
         e.preventDefault()
         const { dispatch, history } = this.props
         const result = await dispatch(handleLoginUser(this.state)) 
-        result && history.push('/')
+        const { from } = history.location.state
+        result && history.push(from.pathname)
     }
 
     render() {
