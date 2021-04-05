@@ -14,6 +14,10 @@ p {
   padding: 0;
 }
 
+main {
+  text-align: center;
+}
+
 li {
   list-style: none;
 }
@@ -22,13 +26,15 @@ button {
   cursor: pointer;
 }
 
-.App {
-  text-align: center;
-}
-
 .container {
   max-width: var(--max-width);
   margin: 30px auto 0;
+}
+
+.list-container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
 }
 
 .box {
@@ -43,22 +49,4 @@ button {
 
 .strong {
   font-weight: 700;
-}
-
-.margin-top-20 {
-  margin-top: 20px;
-}
-
-.secondary {
-  color: #666;
-}
-
-.center {
-  text-align: center;
-}
-
-.grid-container {
-  display: grid;
-  grid-gap: 15px;
-  grid-template-columns: repeat(3, 1fr);
 }
