@@ -16,7 +16,7 @@ class Dashboard extends Component {
   }
   
   render() {
-    const { answeredQid, unansweredQid } = this.props
+    const { answeredQuestions, unansweredQuestions } = this.props
     const { tapIndex } = this.state
 
     return (
@@ -27,24 +27,36 @@ class Dashboard extends Component {
           onhandleChange= {this.setTabIndex}
         />
         <TabPanel className='list-container' value={tapIndex} index={0}>
-          {answeredQid.map((id) => (
-              <AnsweredCard 
-                key= {id}
-                id= {id} 
-              />)
-            )} 
+          { answeredQuestions.length === 0
+            ? <NoResult />
+            : answeredQuestions.map((id) => (
+                <AnsweredCard 
+                  key= {id}
+                  id= {id} 
+                />)
+              )
+          } 
           </TabPanel>
           <TabPanel className='list-container' value={tapIndex} index={1}>
-          {unansweredQid.map((id) => (
-            <UnansweredCard 
-              key= {id}
-              id= {id} 
-            />
-          ))}
+          { unansweredQuestions.length === 0
+            ? <NoResult />
+            : unansweredQuestions.map((id) => (
+                <UnansweredCard 
+                  key= {id}
+                  id= {id} 
+                />)
+              )
+          }
         </TabPanel>
       </section>
     );
   }
+}
+
+function NoResult () {
+  return <div className='no-result'>
+    No questions found
+  </div>
 }
 
 function mapStateToProps ({ questions, users, authedUser }) {
@@ -55,8 +67,12 @@ function mapStateToProps ({ questions, users, authedUser }) {
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
 
   return {
-    answeredQid,
-    unansweredQid
+    answeredQuestions: answeredQid 
+      ? answeredQid
+      : null,
+    unansweredQuestions: unansweredQid
+      ? unansweredQid
+      : null
   }
 }
 

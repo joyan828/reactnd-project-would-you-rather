@@ -15,7 +15,7 @@ function UnansweredSmall(props) {
            <Link to={`/question/${id}`}>
                 <div className='questioner'>
                     <img 
-                        src= { author.avatarURL(author.id) }
+                        src= { author.avatarURL }
                         alt= {`avatar of ${author.name}`}
                         className='avatar-img'
                     />
