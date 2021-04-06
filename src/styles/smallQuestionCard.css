@@ -60,16 +60,7 @@
 }
 
 .answer-card-small .options .or {
-  /* font-family: var(--point-font-bold); */
   font-size: 1.2rem;
-  /* display: inline-block;
-  background-color: var(--light-gray);
-  color: var(--white);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px; */
 }
 
 .point {
@@ -78,12 +69,16 @@
   font-size: 1.5rem;
 }
 
-.answer-card-small .total-vote {
+.answer-card-small .sub-info {
   font-size: 0.9rem;
   position: absolute;
   bottom: 10px;
   right: 10px;
   color: var(--dim-gray);
+}
+
+.answer-card-small .sub-info span:first-child {
+  margin-right: 10px;
 }
 
 .no-result {

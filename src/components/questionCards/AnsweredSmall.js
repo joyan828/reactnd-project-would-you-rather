@@ -10,7 +10,7 @@ function AnsweredSmall(props) {
         return optionOne.votes.includes(props.authedUser) 
     }
     const { 
-        id, author, optionOne, optionTwo
+        id, author, optionOne, optionTwo, comments
     } = props.question
     const totalVote = optionOne.votes.length + optionTwo.votes.length
 
@@ -43,8 +43,11 @@ function AnsweredSmall(props) {
                     <span className={isOptionOneSelected() ? 'option' : 'option selected'}>{optionTwo.text} </span>
                 </p>
             </div>
-
-            <p className='total-vote'>{totalVote} Voted</p>
+            
+            <p className='sub-info'>
+                <span>Votes {totalVote}</span>
+                <span>Comments {comments.length}</span>
+            </p>
         </Link>
       </div>
     );

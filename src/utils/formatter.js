@@ -38,13 +38,32 @@ export function generateUser ({ id, name, password }) {
 }
 
 export function formatQuestion ({ question, author }) {
-    const { id, timestamp, optionOne, optionTwo} = question
+    const { id, timestamp, optionOne, optionTwo, comments} = question
     return {
         author,
         id,
         timestamp: formatDate(timestamp), 
         optionOne,
         optionTwo,
+        comments
+    }
+}
+
+export function formatComment (comment, author, authedUser, parentComment) {
+    const { id, text, vote, likes, replies, timestamp } = comment
+    const { name, avatarURL } = author
+    
+    return {
+        name,
+        id,
+        timestamp,
+        text,
+        vote,
+        avatar: avatarURL,
+        likes: likes.length,
+        replies: replies.length,
+        hasLiked: likes.includes(authedUser),
+        isParent: !parentComment ? true : false,
     }
 }
 
