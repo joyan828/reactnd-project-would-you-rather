@@ -1,6 +1,7 @@
 import {  
     _getUsers,
     _getQuestions,
+    _getComments,
     _saveQuestion,
     _saveQuestionAnswer,
     _saveUser,
@@ -11,13 +12,18 @@ import {
 export function getInitialData () {
     return Promise.all([ 
         _getQuestions(),
-        _getUsers()
-    ]).then(([questions, users]) => ({
+        _getUsers(),
+        _getComments()
+    ]).then(([questions, users, comments]) => ({
         questions, 
-        users
+        users,
+        comments
     }))
 }
 
+export function getComments (quesitonId) {
+    return _getComments(quesitonId)
+}
 export function saveQuestion (question) {
     return _saveQuestion(question)
 }
