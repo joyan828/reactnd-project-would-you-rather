@@ -1,11 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { formatComment, formatDate } from '../../utils/formatter'
-import { BiComment, BiLike } from "react-icons/bi";
+import { BiComment, BiLike } from "react-icons/bi"
+import { handleToggleComment } from '../../actions/comments'
 
 function Comment (props) {
     const { name, id, timestamp, text, vote, avatar, likes, replies, hasLiked, isParent} = props.comment
- 
+    const handleLike = (e) => {
+        e.preventDefault()
+        const { dispatch, authedUser } = props
+        dispatch(handleToggleComment({
+            id,
+            hasLiked,
+            authedUser
+        }))
+    }
+
     return (
         <div className={isParent? 'comment' : 'comment child-comment'}>
             <div className={vote === 'optionOne' ? 'vote op-one' : 'vote op-two'}>
@@ -26,6 +36,7 @@ function Comment (props) {
                 <div className='buttons'>
                     <button 
                         className={hasLiked ? 'like-button liked' : 'like-button'}
+                        onClick={handleLike}
                     >
                         <BiLike /> {likes}
                     </button>
@@ -44,7 +55,8 @@ function mapStateToProps ({ users, comments, authedUser }, {id}) {
     return {
         comment : comment
             ? formatComment(comment, users[author], authedUser, parentComment)
-            : null
+            : null,
+        authedUser
     }
 }
 

@@ -263,6 +263,23 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
       }, 500)
   })
 }
+export function _saveLikeToggle ({ id, hasLiked, authedUser }) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      comments = {
+        ...comments,
+        [id]: {
+          ...comments[id],
+          likes: hasLiked === true
+            ? comments[id].likes.filter((uid) => uid !== authedUser)
+            : comments[id].likes.concat([authedUser])
+        }
+      }
+
+      res()
+    }, 500)
+  })
+}
 
 export function _saveUser ({id, password, name}) {
   return new Promise((res, rej) => {

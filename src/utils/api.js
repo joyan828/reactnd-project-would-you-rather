@@ -2,6 +2,7 @@ import {
     _getUsers,
     _getQuestions,
     _getComments,
+    _saveLikeToggle,
     _saveQuestion,
     _saveQuestionAnswer,
     _saveUser,
@@ -23,6 +24,9 @@ export function getInitialData () {
 
 export function getComments (quesitonId) {
     return _getComments(quesitonId)
+}
+export function saveLikeToggle(info) {
+    return _saveLikeToggle(info)
 }
 export function saveQuestion (question) {
     return _saveQuestion(question)
