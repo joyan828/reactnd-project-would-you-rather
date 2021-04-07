@@ -1,7 +1,7 @@
 import { 
   generateQuestion, 
   generateUser,
-  formatComment
+  generateComment
  } from './formatter'
 
 export let users = {
@@ -139,7 +139,7 @@ export let comments = {
     vote: 'optionOne', 
     commentingTo: '8xf0y6ziyjabvozdd253nd', 
     author: 'sarahedo',
-    timestamp: 1518122597860,
+    timestamp: 1515122597860,
     likes: ['tylermcginnis'],
     replies: ['xj192vofupe1dqz9emx13r', 'vthrdm231a262al8qx3do',],
     replyingTo: null, 
@@ -150,7 +150,7 @@ export let comments = {
     vote: 'optionOne', 
     commentingTo: '8xf0y6ziyjabvozdd253nd', 
     author: 'tylermcginnis',
-    timestamp: 1518122597890,
+    timestamp: 1517122597890,
     likes: ['sarahedo', 'johndoe'],
     replies: [],
     replyingTo: '8xf0y6ziyjabvozdd234nd', 
@@ -278,6 +278,46 @@ export function _saveLikeToggle ({ id, hasLiked, authedUser }) {
 
       res()
     }, 500)
+  })
+}
+
+export function _saveComment ({ author, text, vote, commentingTo, replyingTo }) {
+  return new Promise((res, rej) => {
+    const generatedComment = generateComment({
+      author,
+      text, 
+      vote, 
+      commentingTo, 
+      replyingTo
+    })
+
+    setTimeout(() => {
+      questions = {
+        ...questions,
+        [commentingTo]: {
+          ...questions[commentingTo],
+          comments : questions[commentingTo].comments.concat([generatedComment.id])
+        },
+      }
+
+      let replyingToObj = {}
+      if( replyingTo !== null ) {
+          replyingToObj = { 
+              [replyingTo]: {
+                  ...comments[replyingTo],
+                  replies: comments[replyingTo].replies.concat([generatedComment.id])          
+              }
+          }
+      } 
+
+      comments = {
+        ...comments,
+        [generatedComment.id]: generatedComment,
+        ...replyingToObj,
+
+      }
+      res(generatedComment)
+    }, 1000)
   })
 }
 

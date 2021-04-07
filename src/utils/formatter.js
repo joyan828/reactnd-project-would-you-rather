@@ -23,6 +23,21 @@ export function generateQuestion ({author, optionOneText, optionTwoText}) {
             votes: [], 
             text: optionTwoText
         },
+        comments: []
+    }
+}
+
+export function generateComment ({author, text, vote, commentingTo, replyingTo= null}) {
+    return {
+        id: generateUID(),
+        timestamp: Date.now(),
+        text,
+        vote,
+        author,
+        commentingTo,
+        likes: [],
+        replies: [],
+        replyingTo,
     }
 }
 
@@ -50,7 +65,7 @@ export function formatQuestion ({ question, author }) {
 }
 
 export function formatComment (comment, author, authedUser, parentComment) {
-    const { id, text, vote, likes, replies, timestamp } = comment
+    const { id, text, vote, commentingTo, likes, replies, timestamp } = comment
     const { name, avatarURL } = author
     
     return {
@@ -59,6 +74,7 @@ export function formatComment (comment, author, authedUser, parentComment) {
         timestamp,
         text,
         vote,
+        commentingTo,
         avatar: avatarURL,
         likes: likes.length,
         replies: replies.length,

@@ -3,6 +3,7 @@ import {
     _getQuestions,
     _getComments,
     _saveLikeToggle,
+    _saveComment,
     _saveQuestion,
     _saveQuestionAnswer,
     _saveUser,
@@ -27,6 +28,9 @@ export function getComments (quesitonId) {
 }
 export function saveLikeToggle(info) {
     return _saveLikeToggle(info)
+}
+export function saveComment (info) {
+    return _saveComment(info)
 }
 export function saveQuestion (question) {
     return _saveQuestion(question)
