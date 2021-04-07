@@ -83,6 +83,11 @@
 }
 
 /* answered - poll result */
+.answer-card .poll-result {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--light-gray);
+}
+
 .answer-card .options {
   position: relative;
   width: 100%;

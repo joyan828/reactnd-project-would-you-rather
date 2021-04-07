@@ -1,29 +1,43 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import NewComment from './NewComment'
 import CommentList from './CommentList'
+import { LoaderSmallDots } from '../utils/Loader'
 
 function CommentSection (props) {
-    const { comments, totalComments, questionId } = props
+    const { comments, totalComments, questionId, loading } = props
 
     return (
-        <section>
+        <div>
             <NewComment 
                 questionId={questionId}
             />
-            <article className='comments-container'>
+            <div className='comments-container'>
                 <h4>Comments({totalComments})</h4>
-                <ul>
-                    { comments.map((id)=> (
-                        <CommentList 
-                            key={id}
-                            id={id}
-                        />
-                    ))}
-                </ul>
-            </article>
-        </section>
+                { totalComments > 0 
+                    ? loading 
+                        ? <LoaderSmallDots />
+                        : <ul>
+                            { comments.map((id)=> (
+                                <CommentList 
+                                    key={id}
+                                    id={id}
+                                />
+                            ))}
+                        </ul>
+                    : null
+                }
+                    
+            </div>
+        </div>
     )
+}
+
+CommentSection.propTypes = {
+    questionId: PropTypes.string.isRequired,
+    loading: PropTypes.bool,
+    totalComments: PropTypes.number,
 }
 
 function mapStateToProps ({ comments }, {questionId}) {
@@ -39,7 +53,6 @@ function mapStateToProps ({ comments }, {questionId}) {
     })
 
     return {
-        totalComments: commentId.length,
         comments: parentsCommentId,
         questionId 
     }

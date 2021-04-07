@@ -5,10 +5,20 @@ import { handleReceiveData } from '../../actions/comments'
 import CommentSection from '../comments/CommentSection'
 
 class Answered extends Component {
+    state = {
+        loading: false 
+    }
     componentDidMount() {
         // fetch comments data
         const { dispatch, question } = this.props
-        dispatch(handleReceiveData(question.id)) 
+        if ( question.comments.length > 0) {
+            this.setState({loading: true})
+            
+            dispatch(handleReceiveData(question.id))
+                .then(()=> 
+                    this.setState({loading: false})
+                )
+        }
     }
     isOptionOneSelected = () => {
         const { optionOne } = this.props.question
@@ -19,8 +29,9 @@ class Answered extends Component {
     }
     render () {
         const { 
-            id, author, timestamp, optionOne, optionTwo
+            id, author, timestamp, optionOne, optionTwo, comments
         } = this.props.question
+        const { loading } = this.state
 
         const totalVote = optionOne.votes.length + optionTwo.votes.length
         const optionOneRate = this.calculatePercentage(optionOne.votes.length, totalVote)
@@ -87,11 +98,11 @@ class Answered extends Component {
                     </div>
                 </div>
 
-                <hr />
-
                 {/* Comments */}
                 <CommentSection 
                     questionId={id}
+                    loading={loading}
+                    totalComments={comments.length}
                 />   
 
             </div>
