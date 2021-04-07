@@ -1,6 +1,7 @@
 import { 
     RECEIVE_COMMENTS, 
-    TOGGLE_LIKE 
+    TOGGLE_LIKE,
+    ADD_COMMENT 
 } from '../actions/comments'
 
 export default function comments (state = {}, action) {
@@ -17,6 +18,24 @@ export default function comments (state = {}, action) {
                         : state[action.id].likes.concat([action.authedUser])
                 }
             }
+        case ADD_COMMENT :
+            const { comment } = action
+            let replyingTo = {}
+            if( comment.replyingTo !== null ) {
+                replyingTo = { 
+                    [comment.replyingTo]: {
+                        ...state[comment.replyingTo],
+                        replies: state[comment.replyingTo].replies.concat([comment.id])          
+                    }
+                }
+            } 
+
+            return {
+                ...state,
+                [comment.id]: action.comment,
+                ...replyingTo,
+            }
+
         default :  
             return state
     }

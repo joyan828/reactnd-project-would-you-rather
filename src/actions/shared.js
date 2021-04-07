@@ -1,6 +1,16 @@
-import { getInitialData, saveQuestionAnswer, saveQuestion } from '../utils/api'
-import { saveAnswerToQuestion, addQuestion } from './questions'
+import { 
+    getInitialData, 
+    saveQuestionAnswer, 
+    saveQuestion,
+    saveComment,
+} from '../utils/api'
+import { 
+    saveAnswerToQuestion, 
+    addQuestion, 
+    addCommentToQuestion 
+} from './questions'
 import { saveAnswerToUser, saveQuestionToUser } from './users'
+import { addComment } from './comments'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export const RECEIVE_DATA = 'RECEIVE_DATA'
@@ -39,10 +49,13 @@ export function handleAddQuestion ({optionOneText, optionTwoText}) {
 
 export function handleSaveAnswer(info) {
     return (dispatch) => {
+        dispatch(showLoading())
+
         return saveQuestionAnswer(info)
             .then(({questions, users}) => {
                 dispatch(saveAnswerToQuestion(questions))
                 dispatch(saveAnswerToUser(users))
+                dispatch(hideLoading())
             })
             .catch((e)=> {
                 console.warn(`Error in handleSaveAnswer: `, e)
@@ -50,6 +63,25 @@ export function handleSaveAnswer(info) {
             })
         }   
 } 
+
+export function handleAddComment(info) {
+    return (dispatch) => {
+        dispatch(showLoading())
+
+        return saveComment(info)
+            .then((comment) => {
+                const { id, commentingTo } = comment
+                
+                dispatch(addComment(comment))
+                dispatch(addCommentToQuestion(commentingTo, id))
+                dispatch(hideLoading())
+            })
+            .catch((e)=> {
+                console.warn(`Error in handleAddComment: `, e)
+                alert('There was an error submiting the comment. Try again.') 
+            })
+    }
+}
 
 function receiveData (questions, users) {
     return {

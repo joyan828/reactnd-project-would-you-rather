@@ -6,6 +6,7 @@ import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS'
 export const TOGGLE_LIKE = 'TOGGLE_LIKE'
+export const ADD_COMMENT = 'ADD_COMMENT'
 
 export function handleReceiveData(questionId) {
     return (dispatch) => {
@@ -46,5 +47,12 @@ function toggleComment({ id, authedUser, hasLiked }) {
         id,
         authedUser,
         hasLiked
+    }
+}
+
+export function addComment(comment) {
+    return {
+        type: ADD_COMMENT,
+        comment
     }
 }
