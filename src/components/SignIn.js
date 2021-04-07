@@ -20,14 +20,25 @@ class SignIn extends Component {
     }
     handleSubmit = async(e) => {
         e.preventDefault()
-        const { dispatch, history } = this.props
+        const { dispatch } = this.props
         const result = await dispatch(handleLoginUser(this.state)) 
-        const { from } = history.location.state
-        result && history.push(from.pathname)
+        
+        result && this.handleRedirect()
     }
-
+    // If user is redirected to login page redirect to previous page. 
+    // Otherwise move to home page.
+    handleRedirect = () => {
+        const { history } = this.props
+        const { state } = history.location
+        let pathTo = '/'
+        if( state ) {
+            pathTo = state.from.pathname
+        }
+        history.push(pathTo)
+    }
     render() {
         const { id, password } = this.state
+
         return (
             <section className='box shadow container'>
                 <h3>Log in</h3>
