@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { formatDate } from '../../utils/formatter'
 import { handleSaveAnswer } from '../../actions/shared'
 
 export default class Unanswered extends Component {
@@ -32,7 +31,6 @@ export default class Unanswered extends Component {
         const { 
             author, timestamp, optionOne, optionTwo
         } = this.props.question
-
         if(this.state.toHome) {
             return <Redirect to='/'></Redirect>
         }
@@ -54,7 +52,7 @@ export default class Unanswered extends Component {
                 <div className='point'>
                     Would you rather
                 </div> 
-                <div className='date-created'>{formatDate(timestamp)}</div>
+                <div className='date-created'>{timestamp}</div>
             </div>
             
             <form className='answer-form' onSubmit={this.handleSubmit}>

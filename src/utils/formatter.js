@@ -71,7 +71,7 @@ export function formatComment (comment, author, authedUser, parentComment) {
     return {
         name,
         id,
-        timestamp,
+        timestamp: formatDate(timestamp),
         text,
         vote,
         commentingTo,

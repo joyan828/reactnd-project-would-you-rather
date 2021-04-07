@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatDate } from '../../utils/formatter'
 import CheckMark from '../../images/checking-mark.png'
 import { handleReceiveData } from '../../actions/comments'
 import CommentSection from '../comments/CommentSection'
@@ -22,8 +21,6 @@ class Answered extends Component {
         const { 
             id, author, timestamp, optionOne, optionTwo
         } = this.props.question
-        
-        console.log('Timestamp: ', timestamp)
 
         const totalVote = optionOne.votes.length + optionTwo.votes.length
         const optionOneRate = this.calculatePercentage(optionOne.votes.length, totalVote)
@@ -45,7 +42,7 @@ class Answered extends Component {
                     <div className='point'>
                         Would you rather
                     </div> 
-                    <div className='date-created'>{formatDate(timestamp)}</div>
+                    <div className='date-created'>{timestamp}</div>
                 </div>
                 <div className='poll-result'>
                     <div className='options'>

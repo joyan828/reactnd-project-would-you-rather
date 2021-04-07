@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { formatComment, formatDate } from '../../utils/formatter'
+import { formatComment } from '../../utils/formatter'
 import { BiComment, BiLike } from 'react-icons/bi'
 import { handleToggleComment } from '../../actions/comments'
 
@@ -29,7 +29,7 @@ function Comment (props) {
             <div className='content'>
                 <div className='user-info'>
                     <p className='user-name'>{name}</p>
-                    <p className='date-created'>{formatDate(timestamp)}</p>
+                    <p className='date-created'>{timestamp}</p>
                 </div>
                 <div className='text'>
                     {text}
