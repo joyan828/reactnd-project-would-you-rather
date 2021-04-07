@@ -1,14 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { formatComment, formatDate } from '../../utils/formatter'
-import { BiComment, BiLike } from "react-icons/bi"
+import { BiComment, BiLike } from 'react-icons/bi'
 import { handleToggleComment } from '../../actions/comments'
 
 function Comment (props) {
     const { name, id, timestamp, text, vote, avatar, likes, replies, hasLiked, isParent} = props.comment
+    const { dispatch, authedUser, onClickReply } = props
+
     const handleLike = (e) => {
         e.preventDefault()
-        const { dispatch, authedUser } = props
         dispatch(handleToggleComment({
             id,
             hasLiked,
@@ -40,7 +41,10 @@ function Comment (props) {
                     >
                         <BiLike /> {likes}
                     </button>
-                    { isParent && <button><BiComment /> {replies}</button> }
+                    { isParent && 
+                        <button onClick={onClickReply}>
+                            <BiComment /> {replies}
+                        </button> }
                 </div>
             </div>
         </div>

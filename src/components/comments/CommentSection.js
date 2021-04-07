@@ -1,17 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import NewComment from './NewComment'
 import CommentList from './CommentList'
 
 function CommentSection (props) {
-    const { comments } = props
+    const { comments, totalComments, questionId } = props
+
     return (
         <section>
-            <div>
-                <h3>New Comment</h3>
-                <textarea style={{width: '100%', height: '60px'}}/>
-            </div>
+            <NewComment 
+                questionId={questionId}
+            />
             <article className='comments-container'>
-                <h3>Comments</h3>
+                <h4>Comments({totalComments})</h4>
                 <ul>
                     { comments.map((id)=> (
                         <CommentList 
@@ -25,19 +26,22 @@ function CommentSection (props) {
     )
 }
 
-function mapStateToProps ({ comments }) {
+function mapStateToProps ({ comments }, {questionId}) {
     const commentId = Object.keys(comments)
+        .sort((a, b) => comments[a].timestamp - comments[b].timestamp)
     let parentsCommentId = [] 
 
     commentId.forEach((id) => {
-        // which doesn't have its parent comment
+        // which doesn't have its parent comment(i.e. not a reply)
         if ( comments[id].replies.length > 0 || comments[id].replyingTo === null) {
             parentsCommentId.push(id)
         }  
     })
 
     return {
-        comments: parentsCommentId
+        totalComments: commentId.length,
+        comments: parentsCommentId,
+        questionId 
     }
 }
 

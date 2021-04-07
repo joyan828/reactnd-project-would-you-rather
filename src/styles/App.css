@@ -28,6 +28,12 @@ button {
   background-color: transparent;
 }
 
+textarea {
+  font-size: 1rem;
+  font-family: "Mulish", "Roboto", sans-serif;
+  font-weight: 400;
+}
+
 .container {
   max-width: var(--max-width);
   margin: 30px auto 0;

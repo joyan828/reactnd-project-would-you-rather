@@ -1,3 +1,8 @@
+.comments-container h4 {
+  text-align: left;
+}
+
+/* comment list  */
 .comments-list {
   margin-bottom: 10px;
   border-bottom: 1px solid var(--lightest-gray);
@@ -56,4 +61,19 @@
 }
 .content .buttons .liked {
   color: var(--primary);
+}
+
+/* new comment */
+.new-comment {
+  margin-bottom: 10px;
+}
+.new-comment h4 {
+  text-align: left;
+}
+.new-comment form {
+  text-align: right;
+}
+.new-comment .comment-text {
+  width: 100%;
+  border: 1px solid var(--medium-gray);
 }

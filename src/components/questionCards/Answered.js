@@ -20,7 +20,7 @@ class Answered extends Component {
     }
     render () {
         const { 
-            author, timestamp, optionOne, optionTwo, comments
+            id, author, timestamp, optionOne, optionTwo
         } = this.props.question
         
         console.log('Timestamp: ', timestamp)
@@ -93,11 +93,10 @@ class Answered extends Component {
                 <hr />
 
                 {/* Comments */}
-                { 
-                    comments.length > 0 
-                    ? <CommentSection />
-                    : 'no comments'
-                }      
+                <CommentSection 
+                    questionId={id}
+                />   
+
             </div>
         );
     }
