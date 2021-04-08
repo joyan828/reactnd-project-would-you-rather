@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# reactnd-project-would-you-rather
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app is a game where you choose between two difficult trivia. You can check other people's preferences for the question after you vote, and you can leave comments to start the discussion. The more questions and answers you leave, the higher your ranking in the game. This project is for the second assessment for Udacity's React Nanodegree program.
 
-## Available Scripts
+This app is written in React, Redux, Redux-thunk, React-redux and Material ui for styling.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `yarn start`
+- Demo
+- Getting started
+- Additional features
+- Versions
+- Copyright and License
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Demo
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You can cheke out a demo on the link here:
+https://saeboman-reactnd-project2.web.app
 
-### `yarn test`
+For testing purpose, you can use Johndoe's account.
+ID: johndoe
+Password: johndoe123
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting started
 
-### `yarn build`
+To install this project follow the instruction below:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+git clone https://github.com/joyan828/reactnd-project-would-you-rather.git
+cd reactnd-project-would-you-rather
+npm install
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Additional features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- User registration feature
+  User registration is added so you could create a new account. The ID, password, and name are entered as required information, each input field validates the input value and registers the user only when the input value is appropriate.
 
-### `yarn eject`
+- Comment feature
+  Commenting feature is added to the question page. It contains inserting a comment, toggling likes, and replying to the comment. The list of comments is sorted by the date uploaded, oldest to newest.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Versions
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+v1.0
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Default project implementation
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Copyright and License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The project's [starter code](https://github.com/udacity/reactnd-project-would-you-rather-starter.git) contributed by Udacity.
