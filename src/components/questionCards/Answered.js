@@ -1,25 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CheckMark from '../../images/checking-mark.png'
-import { handleReceiveData } from '../../actions/comments'
 import CommentSection from '../comments/CommentSection'
 
 class Answered extends Component {
-    state = {
-        loading: false 
-    }
-    componentDidMount() {
-        // fetch comments data
-        const { dispatch, question } = this.props
-        if ( question.comments.length > 0) {
-            this.setState({loading: true})
-            
-            dispatch(handleReceiveData(question.id))
-                .then(()=> 
-                    this.setState({loading: false})
-                )
-        }
-    }
     isOptionOneSelected = () => {
         const { optionOne } = this.props.question
         return optionOne.votes.includes(this.props.authedUser) 
@@ -31,7 +15,6 @@ class Answered extends Component {
         const { 
             id, author, timestamp, optionOne, optionTwo, comments
         } = this.props.question
-        const { loading } = this.state
 
         const totalVote = optionOne.votes.length + optionTwo.votes.length
         const optionOneRate = this.calculatePercentage(optionOne.votes.length, totalVote)
@@ -101,7 +84,6 @@ class Answered extends Component {
                 {/* Comments */}
                 <CommentSection 
                     questionId={id}
-                    loading={loading}
                     totalComments={comments.length}
                 />   
 

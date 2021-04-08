@@ -1,37 +1,57 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import NewComment from './NewComment'
 import CommentList from './CommentList'
+import { handleReceiveData } from '../../actions/comments'
 import { LoaderSmallDots } from '../utils/Loader'
 
-function CommentSection (props) {
-    const { comments, totalComments, questionId, loading } = props
+class CommentSection extends Component {
+    state = {
+        loading: false 
+    }
+    componentDidMount() {
+        // fetch comments data
+        const { dispatch, questionId, totalComments } = this.props
 
-    return (
-        <div>
-            <NewComment 
-                questionId={questionId}
-            />
-            <div className='comments-container'>
-                <h4>Comments({totalComments})</h4>
-                { totalComments > 0 
-                    ? loading 
-                        ? <LoaderSmallDots />
-                        : <ul>
-                            { comments.map((id)=> (
-                                <CommentList 
-                                    key={id}
-                                    id={id}
-                                />
-                            ))}
-                        </ul>
-                    : null
-                }
-                    
+        if ( totalComments > 0) {
+            this.setState({loading: true})
+            
+            dispatch(handleReceiveData(questionId))
+                .then(()=> 
+                    this.setState({loading: false})
+                )
+        }
+    }
+    render () {
+        const { comments, totalComments, questionId } = this.props
+        const { loading } = this.state
+
+        return (
+            <div>
+                <NewComment 
+                    questionId={questionId}
+                />
+                <div className='comments-container'>
+                    <h4>Comments({totalComments})</h4>
+                    { totalComments > 0 
+                        ? loading 
+                            ? <LoaderSmallDots />
+                            : <ul>
+                                { comments.map((id)=> (
+                                    <CommentList 
+                                        key={id}
+                                        id={id}
+                                    />
+                                ))}
+                            </ul>
+                        : null
+                    }
+                        
+                </div>
             </div>
-        </div>
-    )
+        )
+    } 
 }
 
 CommentSection.propTypes = {
@@ -40,7 +60,7 @@ CommentSection.propTypes = {
     totalComments: PropTypes.number,
 }
 
-function mapStateToProps ({ comments }, {questionId}) {
+function mapStateToProps ({ comments }) {
     const commentId = Object.keys(comments)
         .sort((a, b) => comments[a].timestamp - comments[b].timestamp)
     let parentsCommentId = [] 
@@ -53,8 +73,7 @@ function mapStateToProps ({ comments }, {questionId}) {
     })
 
     return {
-        comments: parentsCommentId,
-        questionId 
+        comments: parentsCommentId
     }
 }
 
