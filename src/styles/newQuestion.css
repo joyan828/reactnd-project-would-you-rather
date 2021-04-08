@@ -1,0 +1,6 @@
+.title-text {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  text-align: left;
+  font-family: var(--point-font-bold);
+}
