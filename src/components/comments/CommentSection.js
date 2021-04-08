@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import NewComment from './NewComment'
 import CommentList from './CommentList'
-import { handleReceiveData } from '../../actions/comments'
+import { handleReceiveData, resetComment } from '../../actions/comments'
 import { LoaderSmallDots } from '../utils/Loader'
 
 class CommentSection extends Component {
@@ -11,17 +11,19 @@ class CommentSection extends Component {
         loading: false 
     }
     componentDidMount() {
-        // fetch comments data
         const { dispatch, questionId, totalComments } = this.props
 
-        if ( totalComments > 0) {
+        dispatch(resetComment())
+
+        // fetch comments data only needed to minimize ajax call
+        if ( totalComments >  0) {
             this.setState({loading: true})
             
             dispatch(handleReceiveData(questionId))
                 .then(()=> 
                     this.setState({loading: false})
                 )
-        }
+        }  
     }
     render () {
         const { comments, totalComments, questionId } = this.props

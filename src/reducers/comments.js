@@ -1,7 +1,8 @@
 import { 
     RECEIVE_COMMENTS, 
     TOGGLE_LIKE,
-    ADD_COMMENT 
+    ADD_COMMENT,
+    RESET_COMMENTS
 } from '../actions/comments'
 
 export default function comments (state = {}, action) {
@@ -35,7 +36,8 @@ export default function comments (state = {}, action) {
                 [comment.id]: action.comment,
                 ...replyingTo,
             }
-
+        case RESET_COMMENTS : 
+            return action.comments
         default :  
             return state
     }
