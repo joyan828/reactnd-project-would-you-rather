@@ -8,11 +8,11 @@ function UnansweredSmall(props) {
     const { id, author, optionOne, optionTwo } = props.question
 
     return (
-        <li className='answer-card-small'>
-            { author.id === props.authedUser &&
-                <MineBadge />
-            }           
+        <div className='answer-card-small'>  
            <Link to={`/question/${id}`}>
+                { author.id === props.authedUser &&
+                    <MineBadge />
+                } 
                 <div className='questioner'>
                     <img 
                         src= { author.avatarURL }
@@ -36,7 +36,7 @@ function UnansweredSmall(props) {
                     </p>
                 </div>
             </Link>
-        </li>
+        </div>
     )
 }
 

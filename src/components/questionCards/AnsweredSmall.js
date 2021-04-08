@@ -15,11 +15,11 @@ function AnsweredSmall(props) {
     const totalVote = optionOne.votes.length + optionTwo.votes.length
 
     return (
-      <div className="answer-card-small">
+      <div className="answer-card-small">     
+        <Link to={`/question/${id}`}>
             { author.id === props.authedUser &&
                 <MineBadge />
-            }       
-        <Link to={`/question/${id}`}>
+            }  
             <div className='questioner'>
                 <img 
                     src= { author.avatarURL }

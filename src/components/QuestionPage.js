@@ -12,7 +12,7 @@ function QuestionPage (props) {
         return <Redirect to='/notfound'></Redirect>
     }
     return (
-        <div className='container'>
+        <section className='container'>
             {
                 isAnswered 
                     ? <Answered 
@@ -26,7 +26,7 @@ function QuestionPage (props) {
                         authedUser= {authedUser}
                     />
             }
-        </div>
+        </section>
     )
 }
 
